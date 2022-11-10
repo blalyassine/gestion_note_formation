@@ -4,39 +4,86 @@
 
 #-- obj 
 Nom_Eleve=[]
-Formations=["php","js","html","python"]
+Nom_Formations=[]
 Notes=[]
 Note_Moyenne=[]
-# message pour  NBR  eleves 
 
-Nbr=int(input("Donner Nbr votre eleve : "))
+# metheod tri note 
+def tri_Note_Moyenne(tab):
+
+   for i in range(len(tab)):
+
+      # Trouver le note max
+       max = i
+
+       for j in range(i+1, len(tab)):
+           if tab[max] < tab[j]:
+               max = j
+                
+       tmp = tab[i]
+       tab[i] = tab[max]
+       tab[max] = tmp
+
+   return tab
+
+# message pour  NBR  eleves  est Formations
+Nbr_elev=int(input("Donner Nbr votre eleve : "))
+Nbr_Forma=int(input("Donner Nbr votre Formations : "))
 
 
 # message pour demande le nom de eleve
-for NbrNom in range(Nbr):
+for NbrNom in range(Nbr_elev):
     Nom=input("Nom de eleve " + str(NbrNom+1) + ": " )
     Nom_Eleve.append(Nom)
 
+# message pour demande le nom de Formations
+for NbrFor in range(Nbr_Forma):
+    forma=input("Nom de Formation  " + str(NbrFor+1) + ": " )
+    Nom_Formations.append(forma)
+print ("---------------------------------------------------")
 # demande le note de eleve
-for i in range(Nbr):
+for i in range(Nbr_elev):
     NoteFormation=[]
     #  boucle in Nom_Eleve:
     print(f"===> les Note de eleve  "+ str(i+1) + " :")
 
-    for j in range(len(Formations)):
-        Note_Formation=float(input("Note de Foramation " + Formations[j] + " : "))
+    for j in range(len(Nom_Formations)):
+        Note_Formation=float(input("Note de Foramation " + Nom_Formations[j] + " : "))
         NoteFormation.append(Note_Formation)
         
     Notes.append(NoteFormation)
 
     
 #  note de chaque eleve 
-
+print ("---------------------------------------------------")
 for nnt in Notes:
-    note_moyenne=sum(nnt)/len(Formations)
+    note_moyenne=sum(nnt)/len(Nom_Formations)
     Note_Moyenne.append(note_moyenne)
-
 i = 0
 for jj in Nom_Eleve:
     print(f"===> Note  de eleve  {jj} :  {Note_Moyenne[i]}")
     i=i+1
+    
+## declaer funtion tri  Note_Moyenne
+tri_Note_Moyenne(Note_Moyenne)
+ii=0
+print ("---------------------------------------------------")
+
+print ("Le Note_Moyenne  des eleve trié par decoicent")
+print(f"*** Eleve|Note|Note *****")
+for jj in Nom_Eleve:
+    if (Note_Moyenne[ii]<10):
+        note_m="not admin"
+    elif (Note_Moyenne[ii]>=10):
+        note_m="passable"
+    elif (Note_Moyenne[ii]>=12):
+        note_m="assez bein"
+    elif (Note_Moyenne[ii]>=14):
+        note_m="bein"
+    elif (Note_Moyenne[ii]>=16):
+        note_m="Tree bein"
+    else:
+        print(f"===>****")
+        
+    print(f"{jj}|{Note_Moyenne[ii]}|{note_m}")
+    ii=ii+1
