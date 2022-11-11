@@ -71,19 +71,22 @@ print ("---------------------------------------------------")
 
 print ("Le Note_Moyenne  des eleve trié par decoicent")
 print(f"*** Eleve|Note|Note *****")
+iii=0
+NbrEtudiantNonAdmis=0
+NbrEtudiantAdmis=0
 for jj in Nom_Eleve:
-    if (Note_Moyenne[ii]<10):
-        note_m="not admin"
-    elif (Note_Moyenne[ii]>=10):
-        note_m="passable"
-    elif (Note_Moyenne[ii]>=12):
-        note_m="assez bein"
-    elif (Note_Moyenne[ii]>=14):
-        note_m="bein"
-    elif (Note_Moyenne[ii]>=16):
-        note_m="Tree bein"
+    if(Note_Moyenne[iii] < 10):
+        etudiantNonAdmis = "nom admin"
+        NbrEtudiantNonAdmis=NbrEtudiantNonAdmis+1
+        print(f"===> Eleve  {jj} : | {Note_Moyenne[iii]} | {etudiantNonAdmis} ")
     else:
-        print(f"===>****")
-        
-    print(f"{jj}|{Note_Moyenne[ii]}|{note_m}")
-    ii=ii+1
+        etudiantAdmis ="admin"
+        print(f"{jj}|{Note_Moyenne[iii]}|{etudiantAdmis}")
+        NbrEtudiantAdmis=NbrEtudiantAdmis+1
+    iii=iii+1
+
+# affiche nbr eleve admin et non admin
+print ("---------------------------------------------------")
+print ("nbr des eleve Admin et Non Admin")
+print(f"NBr des eleve admin : {NbrEtudiantAdmis}/{iii}")
+print(f"NBr des eleve Non admin : {NbrEtudiantNonAdmis}/{iii}")
